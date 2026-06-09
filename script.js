@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Loads the Logs images: images/logs/logs11.webp to logs17.webp 
     // (Note: Using 'logs' as prefix based on your brief)
-    loadGallery('logs-gallery', 'logs', 'logs', 11, 17);
+    loadGallery('logs-gallery', 'logs', 'logs', 1, 17);
 
     // Placeholder for Tree Work (Uncomment and adjust numbers when you have the photos)
     // loadGallery('tree-gallery', 'treework', 'tree', 1, 10);
