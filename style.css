@@ -62,7 +62,7 @@ nav a:hover { color: var(--accent); }
 /* Hero Section */
 .hero {
     height: 70vh;
-    background-image: linear-gradient(rgba(26, 71, 42, 0.7), rgba(26, 71, 42, 0.7)), url('images/cover.jpg');
+    background-image: linear-gradient(rgba(26, 71, 42, 0.7), rgba(26, 71, 42, 0.7)), url('images/Cover.JPG');
     background-size: cover;
     background-position: center;
     display: flex;
