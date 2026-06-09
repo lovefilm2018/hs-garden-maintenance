@@ -190,13 +190,17 @@ footer {
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
-    nav ul {
+    header {
         flex-direction: column;
-        width: 100%;
         text-align: center;
-        display: none; /* Add JS toggle for real hamburger menu if desired */
     }
-    nav ul.active { display: flex; }
+    nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
     .hero h1 { font-size: 1.8rem; }
     .carousel-img { height: 250px; }
 }
