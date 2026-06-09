@@ -40,3 +40,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Placeholder for Tree Work (Uncomment and adjust numbers when you have the photos)
     // loadGallery('tree-gallery', 'treework', 'tree', 1, 10);
 });
+
+// Scroll Reveal Animation
+function reveal() {
+    var reveals = document.querySelectorAll(".content-block");
+    for (var i = 0; i < reveals.length; i++) {
+        var windowHeight = window.innerHeight;
+        var elementTop = reveals[i].getBoundingClientRect().top;
+        var elementVisible = 100; // how far down before it triggers
+        
+        if (elementTop < windowHeight - elementVisible) {
+            reveals[i].classList.add("active");
+        }
+    }
+}
+window.addEventListener("scroll", reveal);
+reveal(); // Trigger on load
