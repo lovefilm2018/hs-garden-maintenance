@@ -94,9 +94,22 @@ nav a:hover { color: var(--accent); }
 
 .hero h1 {
     color: #ffffff !important;
-    font-size: 2.5rem;
+    font-size: 3rem; /* Increased size for the main punchy headline */
+    font-weight: 700;
+    line-height: 1.2;
     margin: 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+.hero-subtext {
+    display: block; /* Forces "Across East Sussex" to a clean new line */
+    font-family: 'Open Sans', sans-serif; /* Switches to the cleaner font */
+    font-size: 1.4rem; /* Smaller and more elegant */
+    font-weight: 600;
+    color: var(--accent) !important; /* Uses your custom accent color to pull the eye */
+    text-transform: uppercase;
+    letter-spacing: 3px; /* Airs out the letters for a premium look */
+    margin-top: 0.75rem;
 }
 
 /* Main Content Containers */
