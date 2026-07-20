@@ -12,8 +12,9 @@ function loadGallery(containerId, folder, prefix, startIndex, endIndex) {
         
         // Construct the file path (e.g., images/lawn/lawn1.webp)
         img.src = `images/${folder}/${prefix}${i}.webp`;
-        img.alt = `H S Garden Maintenance - ${folder} ${i}`;
+        img.alt = `H S Garden Maintenance - ${folder} service photo ${i}`;
         img.className = 'carousel-img';
+        img.loading = 'lazy'; // Added lazy loading for Core Web Vitals performance
         
         // If an image number is skipped or missing, hide the broken icon smoothly
         img.onerror = function() {
@@ -33,12 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Loads the Hedge images: images/hedge/hedge1.webp to hedge28.webp
     loadGallery('hedge-gallery', 'hedge', 'hedge', 1, 28);
 
-    // Loads the Logs images: images/logs/logs11.webp to logs17.webp 
-    // (Note: Using 'logs' as prefix based on your brief)
+    // Loads the Logs images: images/logs/logs11.webp to logs17.webp
     loadGallery('logs-gallery', 'logs', 'logs', 1, 17);
-
-    // Placeholder for Tree Work (Uncomment and adjust numbers when you have the photos)
-    // loadGallery('tree-gallery', 'treework', 'tree', 1, 10);
 });
 
 // Scroll Reveal Animation
