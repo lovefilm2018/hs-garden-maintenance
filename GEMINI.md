@@ -87,3 +87,12 @@ In accordance with Operations HQ standards, all 3 launcher scripts reside direct
   - `AGY_HSGardenMaintenance.lnk` (Custom Bing-palette `HS_AGY.ico`)
   - `CLI_HSGardenMaintenance.lnk` (Custom Bing-palette `HS_CLI.ico`)
   - `Antigravity IDE (HSGardenMaintenance).lnk` (Official IDE icon)
+
+---
+
+## 7. Dedicated Spin-Off Website: H S Logs
+- **Rationale:** Hayden Swan requested separating the firewood & log delivery business into a standalone brand and web presence while preserving `logs.html` on the parent site.
+- **Repository:** `https://github.com/lovefilm2018/hslogs.git`
+- **Local Workspace:** `C:\Users\TotalBiz\Documents\HSLogs`
+- **Official Domain Target:** `https://hslogs.co.uk`
+- **Cross-Linking:** Both sites include sister-service banner cross-links for maximum SEO synergy and seamless customer navigation.
