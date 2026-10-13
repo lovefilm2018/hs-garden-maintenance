@@ -44,16 +44,25 @@
 HSGardenMaintenance/
 ├── GEMINI.md                           # Technical specification & project truth (this file)
 ├── AGENTS.md                           # Operational rules & human-AI partnership protocol
+├── .nojekyll                           # Bypasses Jekyll on GitHub Pages for clean routing
 ├── index.html                          # Homepage & master service overview
 ├── grass-cutting.html                  # Lawn care & paddock mowing service page
 ├── hedges.html                         # Hedge cutting & reduction service page
 ├── tree-work.html                      # Tree work & arb care service page
-├── logs.html                           # Seasoned firewood delivery service page
-├── style.css                           # Master responsive styling & layout
+├── logs.html                           # Seasoned firewood delivery service page & spin-off portal
+├── contact.html                        # Contact page with phone, WhatsApp, and form info
+├── 404.html                            # Custom branded 404 page & intelligent keyword redirect engine
+├── style.css                           # Master responsive styling, banners & layout
 ├── script.js                           # Navigation toggle, lazy loading, interactive logic
 ├── sitemap.xml                         # Search engine sitemap
 ├── robots.txt                          # Crawler indexing instructions
 ├── favicon.ico                         # Favicon
+├── contact-us.html                     # Legacy 301-equivalent redirect to contact.html
+├── log-deliveries.html                 # Legacy 301-equivalent redirect to hslogs.co.uk
+├── artificial-lawns.html               # Legacy 301-equivalent redirect to grass-cutting.html
+├── privacy-policy.html                 # Legacy 301-equivalent redirect to homepage
+├── tree-work-&-fencing.html            # Legacy 301-equivalent redirect to tree-work.html
+├── tree-work-%26-fencing.html          # Legacy encoded redirect to tree-work.html
 ├── AGY_HSGardenMaintenance.bat         # Antigravity CLI launcher (Medium Effort)
 ├── CLI_HSGardenMaintenance.bat         # Gemini CLI Flash Lite launcher
 ├── IDE_HSGardenMaintenance.bat         # Antigravity IDE launcher
@@ -95,4 +104,22 @@ In accordance with Operations HQ standards, all 3 launcher scripts reside direct
 - **Repository:** `https://github.com/lovefilm2018/hslogs.git`
 - **Local Workspace:** `C:\Users\TotalBiz\Documents\HSLogs`
 - **Official Domain Target:** `https://hslogs.co.uk`
-- **Cross-Linking:** Both sites include sister-service banner cross-links for maximum SEO synergy and seamless customer navigation.
+- **Cross-Linking & Navigation Integration:**
+  - **Top Announcement Bar:** Styled amber/wood gradient banner (`.top-announcement-banner`) on every page directing visitors to `hslogs.co.uk`.
+  - **Main Navigation Menu:** "Log Deliveries" menu item updated to open `https://hslogs.co.uk` in a new tab (`target="_blank" rel="noopener noreferrer"`).
+  - **Dedicated Portal Block:** Prominent callout card on `logs.html` directing organic visitors directly to the standalone store.
+
+---
+
+## 8. Google Search Console Legacy Routing & 404 Management
+- **Context:** Automated GSC 404 notices triggered by old website URLs (`14 Jul 2026` crawl history).
+- **Dual-Layer Resolution:**
+  1. **Static 301-Equivalent Redirects:** Created matching `.html` files and directories serving HTTP 200 with `<meta http-equiv="refresh" content="0; url=...">`, canonical tags, and instantaneous JS forwarding:
+     - `/contact-us` &rarr; `contact.html`
+     - `/log-deliveries` &rarr; `https://hslogs.co.uk`
+     - `/artificial-lawns` &rarr; `grass-cutting.html`
+     - `/privacy-policy` &rarr; `index.html`
+     - `/tree-work-%26-fencing` & `/tree-work-&-fencing` &rarr; `tree-work.html`
+  2. **Intelligent Branded Router (`404.html`):** Custom 404 page featuring client-side keyword matching (routing fuzzy queries for logs, trees, lawns, hedges, contact) and full branding with direct contact buttons.
+  3. **Jekyll Bypass:** Added `.nojekyll` to GitHub Pages root to ensure static redirects and encoded filenames are served without build lag.
+
