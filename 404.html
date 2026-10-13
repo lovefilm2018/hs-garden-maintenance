@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | H S Garden Maintenance</title>
+    <meta name="robots" content="noindex, follow">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Client-Side Smart Redirect Engine for Legacy & Misspelled URLs -->
+    <script>
+        (function() {
+            var rawPath = window.location.pathname;
+            var path = decodeURIComponent(rawPath).toLowerCase();
+            
+            // Explicit legacy URL redirects
+            var map = {
+                '/contact-us': '/contact.html',
+                '/contact-us/': '/contact.html',
+                '/log-deliveries': 'https://hslogs.co.uk',
+                '/log-deliveries/': 'https://hslogs.co.uk',
+                '/artificial-lawns': '/grass-cutting.html',
+                '/artificial-lawns/': '/grass-cutting.html',
+                '/tree-work-&-fencing': '/tree-work.html',
+                '/tree-work-&-fencing/': '/tree-work.html',
+                '/tree-work-%26-fencing': '/tree-work.html',
+                '/tree-work-%26-fencing/': '/tree-work.html',
+                '/privacy-policy': '/',
+                '/privacy-policy/': '/'
+            };
+
+            if (map[rawPath.toLowerCase()]) {
+                window.location.replace(map[rawPath.toLowerCase()]);
+                return;
+            }
+            if (map[path]) {
+                window.location.replace(map[path]);
+                return;
+            }
+
+            // Keyword fuzzy match fallback
+            if (path.indexOf('contact') !== -1) {
+                window.location.replace('/contact.html');
+            } else if (path.indexOf('log') !== -1 || path.indexOf('firewood') !== -1) {
+                window.location.replace('https://hslogs.co.uk');
+            } else if (path.indexOf('tree') !== -1 || path.indexOf('fenc') !== -1) {
+                window.location.replace('/tree-work.html');
+            } else if (path.indexOf('lawn') !== -1 || path.indexOf('grass') !== -1 || path.indexOf('mow') !== -1) {
+                window.location.replace('/grass-cutting.html');
+            } else if (path.indexOf('hedge') !== -1) {
+                window.location.replace('/hedges.html');
+            }
+        })();
+    </script>
+</head>
+<body>
+
+    <div class="top-announcement-banner">
+        <span class="banner-badge">New Website</span>
+        <span>🪵 Looking for seasoned firewood &amp; log deliveries? Visit our dedicated new site: <a href="https://hslogs.co.uk" target="_blank" rel="noopener noreferrer"><strong>hslogs.co.uk &rarr;</strong></a></span>
+    </div>
+
+    <header>
+        <div class="logo-container">
+            <a href="index.html"><img src="images/logo.png" alt="H S Garden Maintenance Logo"></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="grass-cutting.html">Grass Cutting</a></li>
+                <li><a href="hedges.html">Hedges</a></li>
+                <li><a href="tree-work.html">Tree Work</a></li>
+                <li><a href="https://hslogs.co.uk" target="_blank" rel="noopener noreferrer">Log Deliveries <i class="fas fa-external-link-alt" style="font-size: 0.75em; margin-left: 2px;"></i></a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="content-block" style="text-align: center; padding: 4rem 2rem;">
+            <div style="font-size: 4rem; color: var(--primary-green); margin-bottom: 1rem;"><i class="fas fa-seedling"></i> 404</div>
+            <h1 style="margin-bottom: 1rem;">Page Not Found</h1>
+            <p style="font-size: 1.15rem; max-width: 650px; margin: 0 auto 2rem; color: #555;">
+                Sorry, the page you are looking for has either moved or no longer exists following our recent website upgrade.
+            </p>
+
+            <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 3rem;">
+                <a href="index.html" class="btn"><i class="fas fa-home"></i> Back to Homepage</a>
+                <a href="grass-cutting.html" class="btn" style="background: var(--light-green);">Grass Cutting</a>
+                <a href="hedges.html" class="btn" style="background: var(--light-green);">Hedge Trimming</a>
+                <a href="tree-work.html" class="btn" style="background: var(--light-green);">Tree Work</a>
+                <a href="https://hslogs.co.uk" target="_blank" rel="noopener noreferrer" class="btn" style="background: #c25e1a;">Log Deliveries &rarr;</a>
+                <a href="contact.html" class="btn">Contact Us</a>
+            </div>
+
+            <div style="padding: 2rem; background: var(--bg-light); border-radius: 8px; max-width: 550px; margin: 0 auto; text-align: center;">
+                <h3 style="margin-bottom: 0.5rem;">Need to speak with Hayden directly?</h3>
+                <p style="margin-bottom: 1rem;">Call or WhatsApp us anytime for a free quote across Heathfield and East Sussex.</p>
+                <a href="tel:07714415606" class="btn" style="font-size: 1.1rem; padding: 12px 24px;"><i class="fas fa-phone-alt"></i> 07714 415606</a>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/447714415606" class="floating-whatsapp" target="_blank" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h3>H S Garden Maintenance</h3>
+                <p>Heathfield, East Sussex<br>England, United Kingdom</p>
+                <p><br><strong>Phone / Text / WhatsApp:</strong><br><a href="tel:07714415606" style="color: inherit; text-decoration: underline;">07714 415606</a></p>
+            </div>
+            <div>
+                <h3>Hours</h3>
+                <p>Monday - Friday: 7am - 5pm</p>
+                <p>Saturday: By appointment</p>
+                <p>Sunday: Closed</p>
+            </div>
+            <div>
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/H-S-Gardening-maintenance-315414229382232" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://wa.me/447714415606" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
