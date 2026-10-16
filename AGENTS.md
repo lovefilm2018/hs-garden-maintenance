@@ -9,7 +9,15 @@ This project operates on a structured **Human-AI Partnership**:
 
 ## II. Mandatory Operational Rules
 
-### 1. Pre-Execution Summaries & Confirmation
+### 1. The 2-Strike Loop-Breaker & Model Escalation (Hard Stop)
+- **Trigger:** If any build, deployment, test, or bugfix fails **2 consecutive times** in a session:
+- **Requirement:**
+  1. **STOP immediately.** Do not attempt a 3rd blind fix.
+  2. Deliver a concise 3-point debrief: (a) what was attempted, (b) why it failed, (c) hypothesized root cause.
+  3. Prompt the Project Director to switch model in AGY via `/model`:
+     *"⚠️ **2-Strike Safety Net:** We have hit 2 consecutive failures. To protect your quota and resolve this accurately, please switch model via `/model` to **Gemini 4 Argon** (now directly available in AGY with its own quota) or **Claude**, and reply 'Proceed'."*
+
+### 2. Pre-Execution Summaries & Confirmation
 - **Rule:** Before running destructive data migrations, bulk deletions, or altering core configurations, provide a clear, scannable summary of proposed changes.
 - **Requirement:** Never delete data or overwrite critical state files without explicit confirmation.
 
@@ -102,36 +110,11 @@ To maximize reasoning accuracy while preventing premature subscription quota dep
 - **Data Ingestion, Research & Scans:** Use lightweight Python/shell scripts or delegate to `research` / `flash_lite` subagents (`invoke_subagent`). Never burn high-reasoning tokens on raw text parsing or bulk log scraping.
 - **Routine Scaffolding & Minor Tweaks (Low Effort / Flash Lite):** File renaming, batch launcher updates, minor CSS/HTML tweaks, simple config edits.
 - **Core Engineering & Logic (Medium Effort — Recommended Baseline):** Multi-file feature builds, database queries, API routing, state management, algorithmic problem solving (`Gemini 3.8 Flash Medium Effort`).
-- **Deep Root Cause & System Architecture (High Effort / Advanced Models):** Intricate race conditions, asynchronous crashes, complex state engine rewrites, cross-cloud IAM security policies (`Gemini 3.8 Flash High Effort`, or Claude models in AGY).
-- **Complex Escalation / External Architecture Review:** **Gemini 4 Argon** via Gemini App / NotebookLM Source Review (see Protocol below). *Note: Gemini 3.1 Pro has been deprecated/removed from AGY; Gemini 4 Argon replaces it as our premier reasoning escalation model.*
+- **Deep Root Cause, Complex Architecture & Escalation:** **Gemini 4 Argon** (directly available in AGY via `/model` with its own dedicated quota) or **Claude** (Sonnet/Opus in AGY).
 
-### 2. The 2-Strike Loop-Breaker Rule (Hard Stop)
-- **Trigger:** If any build, deployment, or bugfix fails **2 consecutive times** in a session:
+### 2. The 2-Strike Loop-Breaker Rule (Enforced via Section II.1)
+- **Hard Stop Protocol:** If any build, deployment, test, or bugfix fails **2 consecutive times** in a session:
   1. **STOP immediately.** Do not attempt a 3rd blind fix.
   2. Summarize: (a) what was attempted, (b) why it failed, and (c) the hypothesized root cause.
-  3. Offer Escalation Pathways:
-     - **Option A (Internal AGY Escalation):** Switch to Gemini 3.8 Flash (High Effort) or switch to Claude models in AGY (`/model`).
-     - **Option B (Gemini 4 Argon External Review Bundle — Recommended for complex logic/architecture):** AGY immediately packages the relevant source files and generates a tailored high-reasoning prompt for Alex to run through Gemini 4 Argon in the Gemini App.
-  4. Prompt the user:
-     *"⚠️ **2-Strike Safety Net:** We have hit 2 consecutive failures. To protect your quota and resolve this accurately, we should escalate. You can switch to **Gemini 3.8 Flash High Effort / Claude**, or I can immediately bundle the relevant source code, error logs, and a tailored prompt for you to review with **Gemini 4 Argon** in your Gemini App Notebook."*
-
-### 3. Gemini 4 Argon Notebook Review & Escalation Protocol
-- **Capability Overview:** The Project Director holds a Gemini AI Pro subscription granting access to the state-of-the-art **Gemini 4 Argon** model inside the Gemini Web/Mobile App. While Argon is restricted to Ultra subscriptions in AGY/Gemini CLI, AGY bridges this gap by acting as the preparatory engineer: bundling source code and formulating high-reasoning review prompts.
-- **When to Use:**
-  - After triggering the 2-Strike Loop-Breaker rule.
-  - When encountering perplexing bugs, subtle race conditions, or hard-to-diagnose stack traces.
-  - When designing complex system architectures, data models, or refactoring plans where a second high-reasoning opinion is valuable.
-- **AGY Execution Responsibilities:**
-  1. **Generate the Argon Source Bundle:**
-     - Identify and isolate only the relevant source code files, configuration blocks, or reproducing test cases.
-     - Either bundle them automatically via `python "C:\Users\TotalBiz\Documents\AI_Usage_Audit\prepare_argon_bundle.py" --files <paths> --title "<title>" --issue "<problem>" --attempted "<failed fixes>"` or output a clean, self-contained markdown file (e.g. `gemini_argon_review.md`).
-     - Include exact error messages, stack traces, and environment context (OS, language versions, dependencies).
-  2. **Generate the Argon Review Prompt:**
-     - Craft a precise, zero-fluff prompt formatted for Gemini 4 Argon to run against the attached sources.
-     - Clearly state: (a) System Architecture & Tech Stack, (b) Expected vs Actual behavior, (c) What has already been tried and why it failed, (d) Targeted directives (e.g., "Pinpoint the exact concurrency flaw", "Provide drop-in code fix for function X", "Evaluate edge cases").
-  3. **User Action:**
-     - Alex attaches the source code files (or pastes/uploads the bundle into a Notebook source) in the Gemini App.
-     - Alex selects **Gemini 4 Argon** and executes the prompt.
-  4. **Feedback Ingestion & Implementation:**
-     - Alex pastes Argon's analysis, code snippets, or recommendations back into the AGY chat.
-     - AGY reviews the proposal, verifies compatibility with the project architecture, implements the code changes, runs tests, and logs the milestone in the audit ledger.
+  3. Prompt the user:
+     *"⚠️ **2-Strike Safety Net:** We have hit 2 consecutive failures. To protect your quota and resolve this accurately, please switch model via `/model` to **Gemini 4 Argon** (now directly available in AGY with its own quota) or **Claude**, and reply 'Proceed'."*
