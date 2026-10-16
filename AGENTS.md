@@ -70,6 +70,10 @@ This project operates on a structured **Human-AI Partnership**:
 - **Rule:** When running tools, CLI utilities, or SDKs that require web authentication (e.g. gcloud, gh, firebase, OAuth flows), never attempt to execute shell commands to open the browser.
 - **Requirement:** Always pass the tool's `--no-launch-browser` flag (or equivalent headless/console flag) and print the raw authentication URL directly to the terminal for the user to click.
 
+### 11. Screenshot & Visual Inspection Protocol
+- **Rule:** Whenever Alex says "see screenshot", "check screenshot", "look at the screenshot", "I've sent you a screenshot", or mentions a screenshot/image without specifying an explicit path:
+- **Requirement:** Immediately query and inspect the most recently modified image file in `C:\Users\TotalBiz\Pictures\Screenshots\` using the `view_file` tool. Never ask him to paste paths or drag-and-drop into an IDE.
+
 ---
 
 
