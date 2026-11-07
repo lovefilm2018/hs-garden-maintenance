@@ -31,21 +31,29 @@ This project operates on a structured **Human-AI Partnership**:
 
 ### 4. Direct Communication & Candor
 - **Rule:** Mirror the Project Director's energy, professional candor, and practical focus.
-- **Requirement:** 
+- **Requirement:**
   - Deliver straightforward answers first, followed by necessary technical context.
   - Avoid unnecessary fluff or jargon; use scannable bullet points, code blocks, and tables.
 
 ### 5. Central Cross-Project Usage & Task Metric CSV Audit
 - **Rule:** Every session and significant task completion must be logged to the central usage audit ledger.
-- **Requirement:** Append operational metrics instantly in <0.1s using: `python "C:\Users\TotalBiz\Documents\AI_Usage_Audit\log_task.py" <ProjectName> "<Task Summary>"`
+- **Requirement:** Append operational metrics instantly in <0.1s using:
+  - Windows Laptop: `python "C:\Users\TotalBiz\Documents\AI_Usage_Audit\log_task.py" <ProjectName> "<Task Summary>"`
+  - Seedbox Linux: `python3 "/storage/workspaces/AI_Usage_Audit/log_task.py" <ProjectName> "<Task Summary>"`
 
 ### 6. Telegram Operations Hub — Seedbox Sync & Service Reload Protocol
 - **Rule:** Whenever modifying, creating, or uploading context markdown files (`context/<project>.md`) or tool scripts (`tools/<project>.py`) to `/storage/services/telegram_gateway/`:
-- **Requirement:** Always execute a detached reload after uploading:
-  ```bash
-  ssh -i ~/.ssh/gigarapid_key -p 34004 lovefilm2018@openssh-ubuntu-lovefilm2018.elektra.mygiga.cloud "pkill -f '[b]ot.py'; nohup python3 /storage/services/telegram_gateway/bot.py >/storage/services/telegram_gateway/bot.log 2>&1 </dev/null & disown"
-  ```
-  And verify PID with `pgrep -a -f 'bot.py'`.
+- **Requirement:**
+  - **From Windows Laptop:** Upload modified files via `scp -P 34004`, then execute detached reload over SSH:
+    ```bash
+    ssh -i ~/.ssh/gigarapid_key -p 34004 lovefilm2018@openssh-ubuntu-lovefilm2018.elektra.mygiga.cloud "pkill -f '[b]ot.py'; nohup python3 /storage/services/telegram_gateway/bot.py >/storage/services/telegram_gateway/bot.log 2>&1 </dev/null & disown"
+    ```
+    And verify PID with `pgrep -a -f 'bot.py'`.
+  - **Directly on Seedbox Linux:** Copy modified files locally (`cp /storage/workspaces/LoveFilm/services/telegram_gateway/... /storage/services/telegram_gateway/...`) and execute detached reload natively in bash without SSH:
+    ```bash
+    pkill -f '[b]ot.py'; nohup python3 /storage/services/telegram_gateway/bot.py >/storage/services/telegram_gateway/bot.log 2>&1 </dev/null & disown
+    ```
+    And verify PID with `pgrep -a -f 'bot.py'`.
 
 ### 7. Shared Google Drive & Google Docs Workspace Integration Protocol
 - **Rule:** When creating, reading, exporting, or formatting project documentation, reports, spreadsheets, or client deliverables in Google Drive/Docs:
@@ -96,9 +104,20 @@ At the start of every session, inspect:
 Whenever the Project Director says **"That's a wrap"** (or wraps up a session/milestone), execute these 6 closing steps automatically:
 1. **Telegram Fleet Context & Tools Audit:** If any new features, endpoints, cron jobs, or core behaviors were built in this session, verify whether the project's Telegram Bot context (`context/<project>.md`) and tool script (`tools/<project>.py`) need to know about them. If yes, update them immediately before committing.
 2. **Sync Documentation:** Update `GEMINI.md` with any new endpoints, schemas, tools, or architectural changes.
-3. **Git Commit & Push:** Verify all modified workspace files are cleanly staged, committed, and pushed to GitHub.
-4. **Seedbox & Live Daemon Synchronization:** If any context/tool files were touched, deploy to seedbox `/storage/services/telegram_gateway/` and verify running daemon PID (or reload via detached command).
-5. **Log Session Close:** Append `SESSION_CLOSE` entry in <0.1s using: `python "C:\Users\TotalBiz\Documents\AI_Usage_Audit\log_task.py" <ProjectName> "<Full Session Summary>" "<ModelTier>" "0" "~1.5k" "SESSION_CLOSE"`
+3. **Git Commit & Synchronous Push:** Stage all modified workspace files, commit with a descriptive message, and execute `git push origin <branch>` **synchronously**. Wait and verify that `git push` has completed with exit code `0` before starting Step 4.
+4. **Environment-Aware Seedbox & Daemon Synchronization (No Loopbacks):**
+   - **If running on Windows Laptop (`win32`):**
+     - **4a. Pull Updated Repo on Seedbox Workspace:** Now that Step 3's push is live on GitHub, execute a one-way pull on the matching seedbox workspace (`/storage/workspaces/<Project>`):
+       ```bash
+       ssh -i ~/.ssh/gigarapid_key -p 34004 lovefilm2018@openssh-ubuntu-lovefilm2018.elektra.mygiga.cloud "git -C /storage/workspaces/<Project> pull --rebase --autostash"
+       ```
+     - **4b. Live Service Reload (if applicable):** If Telegram Gateway or Spoxify files were modified, sync to `/storage/services/...` and reload the daemon.
+   - **If running on Seedbox Linux (`linux` inside `/storage/workspaces/<Project>`):**
+     - **4a. NO SSH / NO Git Pull Loopback:** Because this session already committed and pushed directly from `/storage/workspaces/<Project>` in Step 3, **DO NOT** SSH to the seedbox or run `git pull`.
+     - **4b. Local Service Sync (if applicable):** If Telegram Gateway or Spoxify files were touched, copy them locally (`cp`/`rsync` or `python3 spoxify/deploy.py --seedbox-only`) to `/storage/services/...` and reload the local daemon directly in bash.
+5. **Log Session Close:** Append `SESSION_CLOSE` entry in <0.1s using:
+   - Windows Laptop: `python "C:\Users\TotalBiz\Documents\AI_Usage_Audit\log_task.py" <ProjectName> "<Full Session Summary>" "<ModelTier>" "0" "~1.5k" "SESSION_CLOSE"`
+   - Seedbox Linux: `python3 "/storage/workspaces/AI_Usage_Audit/log_task.py" <ProjectName> "<Full Session Summary>" "<ModelTier>" "0" "~1.5k" "SESSION_CLOSE"`
 6. **Executive Recap:** Present a concise closing summary of all achievements and verified system status.
 ---
 
